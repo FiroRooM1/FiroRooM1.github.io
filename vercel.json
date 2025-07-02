@@ -1,0 +1,63 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "public/**",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/rankIMG/(.*)",
+        "dest": "/public/rankIMG/$1"
+      },
+      {
+        "src": "/positionIMG/(.*)",
+        "dest": "/public/positionIMG/$1"
+      },
+      {
+        "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))",
+        "dest": "/public/$1"
+      },
+      {
+        "src": "/health",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/auth/(.*)",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/posts(.*)",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/applications(.*)",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/parties(.*)",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/my-posts",
+        "dest": "/server.js"
+      },
+      {
+        "src": "/",
+        "dest": "/public/index.html"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/server.js"
+      }
+    ]
+  } 

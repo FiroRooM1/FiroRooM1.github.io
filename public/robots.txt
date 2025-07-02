@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# サイトマップの場所
+Sitemap: https://rally-lol.vercel.app/sitemap.xml
+
+# クロール頻度の調整
+Crawl-delay: 1 

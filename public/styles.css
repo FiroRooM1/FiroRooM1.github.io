@@ -1,0 +1,1378 @@
+/* League of Legends風 現代的UIデザイン */
+:root {
+    /* カラーパレット - LoL公式風 */
+    --primary-bg: #0a0e13;
+    --secondary-bg: #1e2328;
+    --tertiary-bg: #3c3c41;
+    --accent-gold: #c89b3c;
+    --accent-blue: #005a82;
+    --text-primary: #f0e6d2;
+    --text-secondary: #a09b8c;
+    --text-accent: #cdbe91;
+    --border-color: #463714;
+    --success-color: #0596aa;
+    --error-color: #c8aa6e;
+    --shadow-light: rgba(200, 155, 60, 0.2);
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+    
+    /* グラデーション */
+    --gradient-primary: linear-gradient(135deg, #0a0e13 0%, #1e2328 100%);
+    --gradient-card: linear-gradient(135deg, #1e2328 0%, #3c3c41 100%);
+    --gradient-gold: linear-gradient(135deg, #c89b3c 0%, #f0e6d2 100%);
+    --gradient-blue: linear-gradient(135deg, #005a82 0%, #0596aa 100%);
+}
+
+/* リセット & 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: 
+        linear-gradient(135deg, rgba(10, 14, 19, 0.85) 0%, rgba(30, 35, 40, 0.85) 100%),
+        url('https://storage.googleapis.com/tryhard2-cz/media/images/pae54bj49h0lx5r6401e14149869278709498.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ヘッダー - LoL風 */
+.header {
+    background: rgba(30, 35, 40, 0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 2px solid var(--accent-gold);
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px var(--shadow-dark);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px var(--shadow-light);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-item a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.nav-item a:hover {
+    color: var(--accent-gold);
+    background: rgba(200, 155, 60, 0.1);
+    transform: translateY(-2px);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    object-fit: cover;
+}
+
+/* メインコンテンツ */
+.main-container {
+    max-width: 1400px;
+    margin: 100px auto 0;
+    padding: 2rem;
+    min-height: calc(100vh - 100px);
+}
+
+/* 画面切り替え */
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* ヒーローセクション */
+.hero-section {
+    text-align: center;
+    padding: 4rem 0;
+    background: rgba(30, 35, 40, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px var(--shadow-dark);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px var(--shadow-light);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-accent);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* カードデザイン */
+.card {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px var(--shadow-dark);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-gold);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(30, 35, 40, 0.9);
+    box-shadow: 0 12px 40px var(--shadow-light);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ボタン - LoL風 */
+.btn {
+    background: var(--gradient-gold);
+    color: var(--primary-bg);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px var(--shadow-light);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn-secondary {
+    background: var(--gradient-blue);
+    color: var(--text-primary);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--accent-gold);
+    border: 2px solid var(--accent-gold);
+}
+
+.btn-outline:hover {
+    background: var(--accent-gold);
+    color: var(--primary-bg);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* フォーム */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 0.5rem;
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(30, 35, 40, 0.8);
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 20px var(--shadow-light);
+}
+
+.help-text {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* 募集投稿カード */
+.post-card {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--shadow-dark);
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    background: rgba(30, 35, 40, 0.9);
+    box-shadow: 0 8px 30px var(--shadow-light);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.post-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.post-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.meta-item {
+    background: rgba(200, 155, 60, 0.1);
+    color: var(--text-accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+}
+
+.rank-badge {
+    background: var(--gradient-blue);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.post-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.post-author {
+    color: var(--text-accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(200, 155, 60, 0.1);
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.post-actions {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* パーティー関連 */
+.party-container {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 2fr;
+}
+
+.party-members {
+    background: var(--gradient-card);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.member-card {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateX(5px);
+    background: rgba(30, 35, 40, 0.9);
+    box-shadow: 0 4px 20px var(--shadow-light);
+}
+
+.member-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    object-fit: cover;
+}
+
+.member-info h4 {
+    color: var(--text-primary);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.member-rank {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* チャット */
+.party-chat {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+.chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(200, 155, 60, 0.15);
+    border-radius: 1rem 1rem 0 0;
+}
+
+#party-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-gold) var(--secondary-bg);
+}
+
+#party-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#party-messages::-webkit-scrollbar-track {
+    background: var(--secondary-bg);
+}
+
+#party-messages::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+    border-radius: 4px;
+}
+
+.message {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.message.own {
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.message-content {
+    background: rgba(60, 60, 65, 0.8);
+    padding: 1rem;
+    border-radius: 1rem;
+    max-width: 70%;
+    position: relative;
+}
+
+.message.own .message-content {
+    background: rgba(200, 155, 60, 0.2);
+    border: 1px solid var(--accent-gold);
+}
+
+.message-author {
+    font-weight: 700;
+    color: var(--accent-gold);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.message-text {
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.chat-input-container {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background: rgba(30, 35, 40, 0.8);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.chat-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.75rem;
+    background: var(--secondary-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px var(--shadow-light);
+}
+
+/* モーダル */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: rgba(30, 35, 40, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.modal-header h3 {
+    color: var(--accent-gold);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: transparent;
+    border: 2px solid var(--error-color);
+    color: var(--error-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--error-color);
+    color: var(--primary-bg);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* メッセージエリア */
+#message-area {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    z-index: 1500;
+    max-width: 400px;
+}
+
+.message {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    min-width: 300px;
+    animation: slideInFromRight 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-dark);
+}
+
+.message.success {
+    background: rgba(5, 150, 170, 0.2);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.message.error {
+    background: rgba(200, 170, 110, 0.2);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 特殊なカード */
+.my-posts-section {
+    margin-top: 2rem;
+}
+
+.my-post-item {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.my-post-item:hover {
+    transform: translateY(-2px);
+    background: rgba(30, 35, 40, 0.9);
+    box-shadow: 0 6px 20px var(--shadow-light);
+}
+
+.my-post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.my-post-title {
+    color: var(--accent-gold);
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.my-post-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-edit {
+    background: var(--gradient-blue);
+    color: var(--text-primary);
+}
+
+.btn-edit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(5, 150, 170, 0.4);
+}
+
+.btn-delete {
+    background: var(--gradient-gold);
+    color: var(--primary-bg);
+}
+
+.btn-delete:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+/* 申請アイテム */
+.application-item {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.application-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.application-post-title {
+    color: var(--accent-gold);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.application-status {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid #fbbf24;
+}
+
+.status-accepted {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.status-rejected {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.application-details {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.application-detail {
+    margin-bottom: 0.5rem;
+}
+
+.application-detail strong {
+    color: var(--text-accent);
+}
+
+.application-message {
+    background: rgba(200, 155, 60, 0.1);
+    border-left: 3px solid var(--accent-gold);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-style: italic;
+    color: var(--text-accent);
+}
+
+.application-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-accept {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: 2px solid #10b981;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-accept:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-reject {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: 2px solid #ef4444;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reject:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4);
+}
+
+/* パーティーアイテム */
+.party-item {
+    background: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.party-item:hover {
+    transform: translateY(-3px);
+    background: rgba(30, 35, 40, 0.9);
+    box-shadow: 0 8px 25px var(--shadow-light);
+}
+
+.party-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.party-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin: 0;
+}
+
+.party-role {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.role-leader {
+    background: var(--gradient-gold);
+    color: var(--primary-bg);
+}
+
+.role-member {
+    background: var(--gradient-blue);
+    color: var(--text-primary);
+}
+
+.party-info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.party-created {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.enter-party-btn {
+    background: var(--gradient-gold);
+    color: var(--primary-bg);
+    border: 2px solid var(--accent-gold);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.enter-party-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-light);
+}
+
+/* ユーザー情報表示 */
+.user-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.user-avatar-large {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    object-fit: cover;
+}
+
+.user-avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-bg);
+    font-weight: bold;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.display-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.username {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.riot-id {
+    font-size: 0.875rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* Riot ランク情報 */
+.riot-account-info {
+    background: rgba(30, 35, 40, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.summoner-info {
+    color: var(--accent-gold);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.rank-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.rank-info {
+    background: rgba(60, 60, 65, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.rank-info.solo {
+    border-left: 4px solid var(--accent-gold);
+}
+
+.rank-info.flex {
+    border-left: 4px solid var(--accent-blue);
+}
+
+.rank-info.unranked {
+    border-left: 4px solid var(--text-secondary);
+    opacity: 0.8;
+}
+
+.rank-type {
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+.rank-tier {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    margin-bottom: 0.25rem;
+}
+
+.rank-stats {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.riot-info-error {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* 空の状態 */
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 3rem;
+    background: rgba(60, 60, 65, 0.3);
+    border-radius: 0.75rem;
+    border: 2px dashed var(--border-color);
+}
+
+.empty-parties {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 3rem;
+    background: rgba(60, 60, 65, 0.3);
+    border: 2px dashed var(--border-color);
+    border-radius: 1rem;
+}
+
+/* ユーティリティクラス */
+.hidden {
+    display: none !important;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1200px) {
+    .party-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .main-container {
+        margin-top: 150px;
+        padding: 1rem;
+    }
+    
+    .post-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .party-chat {
+        height: 400px;
+    }
+    
+    .message-content {
+        max-width: 85%;
+    }
+    
+    .rank-container {
+        flex-direction: column;
+    }
+    
+    .rank-info {
+        min-width: auto;
+    }
+    
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .modal-header,
+    .application-actions,
+    .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .my-post-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card, .post-card, .member-card, .message {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ローディング状態 */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--accent-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* エラー・成功メッセージ */
+.alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.alert-success {
+    background: rgba(5, 150, 170, 0.2);
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.alert-error {
+    background: rgba(200, 170, 110, 0.2);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+}
+
+/* ランクアイコンとレーンアイコン */
+.rank-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.rank-icon-large {
+    width: 48px;
+    height: 48px;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.lane-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.mode-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ランクバッジ with アイコン */
+.rank-badge-with-icon {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(200, 155, 60, 0.1);
+    border: 1px solid var(--accent-gold);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+}
+
+.meta-item-with-icon {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(60, 60, 65, 0.6);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid rgba(200, 155, 60, 0.2);
+    transition: all 0.3s ease;
+}
+
+.meta-item-with-icon:hover {
+    background: rgba(200, 155, 60, 0.1);
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+/* プロフィール内のランクアイコン */
+.profile-rank-item {
+    display: flex;
+    align-items: center;
+    background: rgba(60, 60, 65, 0.4);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: 1px solid rgba(200, 155, 60, 0.3);
+    transition: all 0.3s ease;
+}
+
+.profile-rank-item:hover {
+    background: rgba(200, 155, 60, 0.1);
+    border-color: var(--accent-gold);
+    transform: translateX(5px);
+}
+
+.profile-rank-info {
+    margin-left: 1rem;
+}
+
+.profile-rank-type {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.profile-rank-tier {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 0.25rem;
+}
+
+.profile-rank-stats {
+    font-size: 0.875rem;
+    color: var(--text-accent);
+}
+
+/* トーストメッセージ */
+.toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: rgba(30, 35, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    max-width: 400px;
+    z-index: 10000;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px var(--shadow-dark);
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast.success {
+    border-color: var(--success-color);
+    background: rgba(5, 150, 170, 0.1);
+}
+
+.toast.error {
+    border-color: var(--error-color);
+    background: rgba(200, 170, 110, 0.1);
+}
+
+.toast.warning {
+    border-color: var(--accent-gold);
+    background: rgba(200, 155, 60, 0.1);
+}
+
+#toast-message {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0;
+} 
