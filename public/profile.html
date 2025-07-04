@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Matching - プロフィール</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">LoL Matching</a>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">ホーム</a>
+                <a href="/profile.html" class="nav-link active">プロフィール</a>
+                <a href="/matching.html" class="nav-link">募集</a>
+                <a href="/posts.html" class="nav-link">投稿</a>
+                <a href="/requests.html" class="nav-link">申請</a>
+                <a href="/party.html" class="nav-link">パーティー</a>
+            </div>
+            <div class="user-profile">
+                <div id="navProfileImage" class="profile-image"></div>
+                <span id="navDisplayName"></span>
+                <button id="navLogoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="summoner-section">
+                <div class="summoner-header-large">
+                    <div class="summoner-icon-large">
+                        <img id="summonerIcon" alt="サモナーアイコン">
+                    </div>
+                    <div class="summoner-info-large">
+                        <div class="summoner-title">
+                            <h2 id="summonerNameDisplay" class="summoner-name"></h2>
+                        </div>
+                        <p id="summonerLevel" class="summoner-level"></p>
+                        <div id="rankInfo" class="rank-info"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile-section">
+                <div class="profile-header">
+                    <h2 class="profile-title">プロフィール設定</h2>
+                    <button id="editBtn" class="edit-btn">
+                        <i class="fas fa-edit"></i> 編集
+                    </button>
+                </div>
+                <form id="profileForm" class="profile-form">
+                    <div class="form-group">
+                        <label for="displayName">表示名</label>
+                        <input type="text" id="displayName" class="form-control" disabled required>
+                    </div>
+                    <div class="form-group">
+                        <label for="summonerName">Riot ID</label>
+                        <input type="text" id="summonerName" class="form-control" disabled required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">新しいパスワード（変更する場合のみ）</label>
+                        <input type="password" id="password" class="form-control" disabled>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="submitBtn" class="submit-btn" style="display: none;">
+                            <i class="fas fa-save"></i> 保存
+                        </button>
+                        <button type="button" id="cancelBtn" class="cancel-btn" style="display: none;">
+                            <i class="fas fa-times"></i> キャンセル
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html> 

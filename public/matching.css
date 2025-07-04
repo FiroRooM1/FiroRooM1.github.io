@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #00b4d8;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#logoutBtn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background: #e63946;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#logoutBtn:hover {
+    background: #c1121f;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+.create-post {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #00b4d8;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+}
+
+select option {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #00b4d8;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #0096c7;
+}
+
+.posts-list {
+    display: grid;
+    gap: 20px;
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    gap: 10px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-info {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.post-description {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: rgba(0, 180, 216, 0.2);
+    color: #00b4d8;
+} 

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Matching - ホーム</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="auth.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        // Pusherの初期化
+        const pusher = new Pusher('8ebcc71b2fe50be4967d', {
+            cluster: 'ap3'
+        });
+
+        // パーティーチャンネルの購読
+        function subscribeToParty(partyId) {
+            const channel = pusher.subscribe(`party-${partyId}`);
+            channel.bind('chat-message', function(data) {
+                // チャットメッセージを受信したときの処理
+                appendMessage(data);
+            });
+        }
+
+        // チャットメッセージの送信
+        async function sendMessage(partyId, message) {
+            try {
+                const response = await fetch('/api/chat/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ partyId, message })
+                });
+
+                if (!response.ok) {
+                    throw new Error('メッセージの送信に失敗しました');
+                }
+            } catch (error) {
+                console.error('メッセージ送信エラー:', error);
+                alert(error.message);
+            }
+        }
+
+        // メッセージの表示
+        function appendMessage(message) {
+            const chatMessages = document.getElementById('chat-messages');
+            if (!chatMessages) return;
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.innerHTML = `
+                <strong>${message.sender.displayName}</strong>:
+                <span>${message.content}</span>
+                <small>${new Date(message.timestamp).toLocaleString()}</small>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">LoL Matching</a>
+            <div class="nav-menu">
+                <button id="homeLink" class="nav-link active">ホーム</button>
+                <a href="/profile.html" class="nav-link auth-required disabled-link" data-tooltip="ログインが必要です">プロフィール</a>
+                <a href="/matching.html" class="nav-link auth-required disabled-link" data-tooltip="ログインが必要です">募集</a>
+                <a href="/posts.html" class="nav-link auth-required disabled-link" data-tooltip="ログインが必要です">投稿</a>
+                <a href="/requests.html" class="nav-link auth-required disabled-link" data-tooltip="ログインが必要です">申請</a>
+                <a href="/party.html" class="nav-link auth-required disabled-link" data-tooltip="ログインが必要です">パーティー</a>
+            </div>
+            <div class="user-profile">
+                <div id="navProfileImage" class="profile-image">👤</div>
+                <span id="navDisplayName"></span>
+                <button id="navLogoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <div class="auth-container" id="authContainer">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="login">ログイン</button>
+                    <button class="tab-btn" data-tab="register">新規登録</button>
+                </div>
+
+                <form id="loginForm" class="auth-form active">
+                    <h2>ログイン</h2>
+                    <div class="form-group">
+                        <input type="text" id="loginUsername" placeholder="ユーザー名" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="パスワード" required>
+                    </div>
+                    <div id="loginError" class="error-message"></div>
+                    <button type="submit" class="submit-btn">ログイン</button>
+                </form>
+
+                <form id="registerForm" class="auth-form">
+                    <h2>新規登録</h2>
+                    <div class="form-group">
+                        <input type="text" id="registerUsername" placeholder="ユーザー名" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="registerPassword" placeholder="パスワード" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="displayName" placeholder="表示名">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="summonerName" placeholder="サモナー名">
+                    </div>
+                    <div id="registerError" class="error-message"></div>
+                    <button type="submit" class="submit-btn">登録</button>
+                </form>
+            </div>
+
+            <section class="welcome-section" style="display: none;">
+                <h1 class="welcome-title">Welcome, Summoner!</h1>
+                <div class="shortcuts-grid">
+                    <a href="/profile.html" class="shortcut-card">
+                        <i class="fas fa-user shortcut-icon"></i>
+                        <h2>プロフィール</h2>
+                        <p>プロフィールの確認と編集</p>
+                    </a>
+                    <a href="/matching.html" class="shortcut-card">
+                        <i class="fas fa-search shortcut-icon"></i>
+                        <h2>募集</h2>
+                        <p>プレイヤーを募集する</p>
+                    </a>
+                    <a href="/posts.html" class="shortcut-card">
+                        <i class="fas fa-pen shortcut-icon"></i>
+                        <h2>投稿</h2>
+                        <p>投稿を作成・閲覧する</p>
+                    </a>
+                    <a href="/requests.html" class="shortcut-card">
+                        <i class="fas fa-envelope shortcut-icon"></i>
+                        <h2>申請</h2>
+                        <p>申請の確認と管理</p>
+                    </a>
+                    <a href="/party.html" class="shortcut-card">
+                        <i class="fas fa-users shortcut-icon"></i>
+                        <h2>パーティー</h2>
+                        <p>パーティーの管理</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 

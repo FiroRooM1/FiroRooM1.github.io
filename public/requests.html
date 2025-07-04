@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Matching - 申請</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">LoL Matching</a>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">ホーム</a>
+                <a href="/profile.html" class="nav-link">プロフィール</a>
+                <a href="/matching.html" class="nav-link">募集</a>
+                <a href="/posts.html" class="nav-link">投稿</a>
+                <a href="/requests.html" class="nav-link active">申請</a>
+                <a href="/party.html" class="nav-link">パーティー</a>
+            </div>
+            <div class="user-profile">
+                <div id="navProfileImage" class="profile-image"></div>
+                <span id="navDisplayName"></span>
+                <button id="navLogoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="requests-section">
+                <h2 class="section-title">受け取った申請</h2>
+                <div id="receivedRequests" class="requests-list"></div>
+
+                <h2 class="section-title">送信した申請</h2>
+                <div id="sentRequests" class="requests-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="requests.js"></script>
+</body>
+</html> 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Matching - 募集</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">LoL Matching</a>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">ホーム</a>
+                <a href="/profile.html" class="nav-link">プロフィール</a>
+                <a href="/matching.html" class="nav-link active">募集</a>
+                <a href="/posts.html" class="nav-link">投稿</a>
+                <a href="/requests.html" class="nav-link">申請</a>
+                <a href="/party.html" class="nav-link">パーティー</a>
+            </div>
+            <div class="user-profile">
+                <div id="navProfileImage" class="profile-image"></div>
+                <span id="navDisplayName"></span>
+                <button id="navLogoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="matching-section">
+                <div class="section-header">
+                    <h2 class="section-title">募集一覧</h2>
+                    <a href="/posts.html" class="create-post-btn">
+                        <i class="fas fa-plus"></i> 新規募集
+                    </a>
+                </div>
+
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="gameModeFilter">ゲームモード</label>
+                        <select id="gameModeFilter" class="filter-control">
+                            <option value="">全て</option>
+                            <option value="NORMAL">ノーマル</option>
+                            <option value="RANKED_SOLO">ランク(ソロ/デュオ)</option>
+                            <option value="RANKED_FLEX">ランク(フレックス)</option>
+                            <option value="ARAM">ARAM</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="mainLaneFilter">レーン</label>
+                        <select id="mainLaneFilter" class="filter-control">
+                            <option value="">全て</option>
+                            <option value="TOP">トップ</option>
+                            <option value="JUNGLE">ジャングル</option>
+                            <option value="MID">ミッド</option>
+                            <option value="ADC">ADC</option>
+                            <option value="SUPPORT">サポート</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="rankFilter">ランク</label>
+                        <select id="rankFilter" class="filter-control">
+                            <option value="">全て</option>
+                            <option value="IRON">アイアン</option>
+                            <option value="BRONZE">ブロンズ</option>
+                            <option value="SILVER">シルバー</option>
+                            <option value="GOLD">ゴールド</option>
+                            <option value="PLATINUM">プラチナ</option>
+                            <option value="EMERALD">エメラルド</option>
+                            <option value="DIAMOND">ダイヤモンド</option>
+                            <option value="MASTER">マスター</option>
+                            <option value="GRANDMASTER">グランドマスター</option>
+                            <option value="CHALLENGER">チャレンジャー</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="postsList" class="posts-list">
+                    <!-- 投稿はJavaScriptで動的に追加 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="matching.js"></script>
+</body>
+</html> 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Matching - パーティー</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">LoL Matching</a>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">ホーム</a>
+                <a href="/profile.html" class="nav-link">プロフィール</a>
+                <a href="/matching.html" class="nav-link">募集</a>
+                <a href="/posts.html" class="nav-link">投稿</a>
+                <a href="/requests.html" class="nav-link">申請</a>
+                <a href="/party.html" class="nav-link active">パーティー</a>
+            </div>
+            <div class="user-profile">
+                <div id="navProfileImage" class="profile-image"></div>
+                <span id="navDisplayName"></span>
+                <button id="navLogoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <div id="partyContainer" class="party-container">
+                <div class="party-info">
+                    <div class="party-header">
+                        <h2 class="party-title">パーティールーム</h2>
+                        <div class="party-status">
+                            <span class="game-mode"></span>
+                            <span class="created-at"></span>
+                        </div>
+                    </div>
+                    <div class="party-members">
+                        <h3>メンバー</h3>
+                        <div class="members-list">
+                            <!-- メンバー情報がここに動的に追加されます -->
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- チャットメッセージがここに動的に追加されます -->
+                    </div>
+                    <div class="chat-input">
+                        <form id="chatForm" class="chat-form">
+                            <input type="text" id="messageInput" class="message-input" placeholder="メッセージを入力..." autocomplete="off">
+                            <button type="submit" class="send-button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="noPartyMessage" class="no-party-message" style="display: none;">
+                <p>現在参加しているパーティーはありません。</p>
+                <a href="/matching.html" class="find-party-btn">パーティーを探す</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="party.js"></script>
+</body>
+</html> 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Matching - 投稿</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">LoL Matching</a>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">ホーム</a>
+                <a href="/profile.html" class="nav-link">プロフィール</a>
+                <a href="/matching.html" class="nav-link">募集</a>
+                <a href="/posts.html" class="nav-link active">投稿</a>
+                <a href="/requests.html" class="nav-link">申請</a>
+                <a href="/party.html" class="nav-link">パーティー</a>
+            </div>
+            <div class="user-profile">
+                <div id="navProfileImage" class="profile-image"></div>
+                <span id="navDisplayName"></span>
+                <button id="navLogoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="post-section">
+                <h1 class="section-title">募集投稿作成</h1>
+                <form id="postForm" class="post-form">
+                    <div class="form-group">
+                        <label for="title">タイトル</label>
+                        <input type="text" id="title" class="form-control" required placeholder="募集タイトルを入力">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="gameMode">ゲームモード</label>
+                            <select id="gameMode" name="gameMode" class="form-control" required>
+                                <option value="">選択してください</option>
+                                <option value="NORMAL">ノーマル</option>
+                                <option value="RANKED_SOLO">ランク(ソロ/デュオ)</option>
+                                <option value="RANKED_FLEX">ランク(フレックス)</option>
+                                <option value="ARAM">ARAM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group half">
+                            <label for="mainLane">メインレーン</label>
+                            <select id="mainLane" class="form-control" required>
+                                <option value="">選択してください</option>
+                                <option value="TOP">TOP</option>
+                                <option value="JG">JG</option>
+                                <option value="MID">MID</option>
+                                <option value="BOT">BOT</option>
+                                <option value="SUP">SUP</option>
+                                <option value="AUTOFILL">AUTOFILL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">詳細（任意）</label>
+                        <textarea id="description" class="form-control" rows="4" placeholder="募集の詳細や条件があれば記入してください"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">投稿作成</button>
+                        <button type="button" class="cancel-btn" onclick="window.location.href='/matching.html'">キャンセル</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="auth.js"></script>
+    <script src="posts.js"></script>
+</body>
+</html> 
